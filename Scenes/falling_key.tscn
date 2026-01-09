@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://csc15t16n63gn"]
+
+[ext_resource type="Script" uid="uid://cvu5cco4fovxa" path="res://Scripts/falling_key.gd" id="1_o7l7b"]
+[ext_resource type="Texture2D" uid="uid://8s6x817mpuq4" path="res://images/icon.svg" id="1_plh85"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plh85"]
+size = Vector2(160, 160)
+
+[node name="FallingKey" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_plh85")
+script = ExtResource("1_o7l7b")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(7.152556e-06, 7.152556e-06)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_plh85")

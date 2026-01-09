@@ -1,0 +1,34 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://b85mvlt3tmc5s"]
+
+[ext_resource type="Texture2D" uid="uid://dkw0vahf28b73" path="res://Art/IsotilesFull.png" id="1_phhhk"]
+[ext_resource type="Texture2D" uid="uid://c3nbntb1tk8rj" path="res://Art/IsotilesHalf.png" id="2_a7wk3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_phhhk"]
+texture = ExtResource("1_phhhk")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+1:0/0 = 0
+0:2/0 = 0
+0:2/0/z_index = 1
+1:2/0 = 0
+1:2/0/z_index = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g5t5l"]
+texture = ExtResource("2_a7wk3")
+texture_region_size = Vector2i(32, 32)
+1:0/0 = 0
+0:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+0:2/0/z_index = 1
+1:2/0 = 0
+1:2/0/z_index = 1
+
+[resource]
+tile_shape = 1
+tile_size = Vector2i(32, 16)
+sources/1 = SubResource("TileSetAtlasSource_g5t5l")
+sources/0 = SubResource("TileSetAtlasSource_phhhk")

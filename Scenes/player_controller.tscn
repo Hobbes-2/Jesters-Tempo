@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://cr1kvc7jbnlg6"]
+
+[ext_resource type="Script" uid="uid://dga6cle7gkm3h" path="res://Scripts/Player/player_controller.gd" id="1_5ur5x"]
+[ext_resource type="Texture2D" uid="uid://8s6x817mpuq4" path="res://images/icon.svg" id="2_dl1v4"]
+[ext_resource type="Script" uid="uid://85t8lmjb7gdl" path="res://Scripts/left_arrow.gd" id="3_53kst"]
+[ext_resource type="SpriteFrames" uid="uid://cq30ijw5ycfc4" path="res://Scenes/ArrowsSpriteframes.tres" id="3_dl1v4"]
+[ext_resource type="Script" uid="uid://elmddohyxd3v" path="res://Scripts/right_arrow.gd" id="5_iy555"]
+[ext_resource type="Script" uid="uid://ddxpf1ktt0yu8" path="res://Scripts/top_arrow.gd" id="6_1cmmd"]
+[ext_resource type="Script" uid="uid://bwx2xcobvx77x" path="res://Scripts/bottom_arrow.gd" id="7_4jfj4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bnokr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dl1v4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53kst"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iy555"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cmmd"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jfj4"]
+size = Vector2(16, 32)
+
+[node name="PlayerController" type="Node2D"]
+script = ExtResource("1_5ur5x")
+key_name = "q"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_bnokr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="LeftKL" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(-144, 48)
+script = ExtResource("3_53kst")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="LeftKL"]
+sprite_frames = ExtResource("3_dl1v4")
+animation = &"leftBase"
+
+[node name="TimingArea" type="Area2D" parent="LeftKL"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftKL/TimingArea"]
+shape = SubResource("RectangleShape2D_53kst")
+
+[node name="RightKL" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(-144, -16)
+script = ExtResource("5_iy555")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="RightKL"]
+sprite_frames = ExtResource("3_dl1v4")
+animation = &"rightBase"
+
+[node name="TimingArea" type="Area2D" parent="RightKL"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightKL/TimingArea"]
+shape = SubResource("RectangleShape2D_iy555")
+
+[node name="TopKL" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(-144, -48)
+script = ExtResource("6_1cmmd")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="TopKL"]
+sprite_frames = ExtResource("3_dl1v4")
+animation = &"upBase"
+
+[node name="TimingArea" type="Area2D" parent="TopKL"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopKL/TimingArea"]
+shape = SubResource("RectangleShape2D_1cmmd")
+
+[node name="BottomKL" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(-144, 16)
+script = ExtResource("7_4jfj4")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="BottomKL"]
+sprite_frames = ExtResource("3_dl1v4")
+animation = &"downBase"
+
+[node name="TimingArea" type="Area2D" parent="BottomKL"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomKL/TimingArea"]
+shape = SubResource("RectangleShape2D_4jfj4")
+
+[connection signal="area_entered" from="LeftKL/TimingArea" to="LeftKL" method="_on_timing_area_area_entered"]
+[connection signal="area_exited" from="LeftKL/TimingArea" to="LeftKL" method="_on_timing_area_area_exited"]
+[connection signal="area_entered" from="RightKL/TimingArea" to="RightKL" method="_on_timing_area_area_entered"]
+[connection signal="area_exited" from="RightKL/TimingArea" to="RightKL" method="_on_timing_area_area_exited"]
+[connection signal="area_entered" from="TopKL/TimingArea" to="TopKL" method="_on_timing_area_area_entered"]
+[connection signal="area_exited" from="TopKL/TimingArea" to="TopKL" method="_on_timing_area_area_exited"]
+[connection signal="area_entered" from="BottomKL/TimingArea" to="BottomKL" method="_on_timing_area_area_entered"]
+[connection signal="area_exited" from="BottomKL/TimingArea" to="BottomKL" method="_on_timing_area_area_exited"]

@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cq30ijw5ycfc4"]
+
+[ext_resource type="Texture2D" uid="uid://bjb0be7wic5sm" path="res://Art/ArrowsBasic.png" id="1_pj6sy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnokr"]
+atlas = ExtResource("1_pj6sy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1esxm"]
+atlas = ExtResource("1_pj6sy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b8x7"]
+atlas = ExtResource("1_pj6sy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53kst"]
+atlas = ExtResource("1_pj6sy")
+region = Rect2(64, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnokr")
+}],
+"loop": true,
+"name": &"downBase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1esxm")
+}],
+"loop": true,
+"name": &"leftBase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b8x7")
+}],
+"loop": true,
+"name": &"rightBase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53kst")
+}],
+"loop": true,
+"name": &"upBase",
+"speed": 5.0
+}]
