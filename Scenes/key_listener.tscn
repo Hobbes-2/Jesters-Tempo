@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4hc345qi0gg8"]
+
+[ext_resource type="Script" uid="uid://drv25nsskipu0" path="res://Scripts/key_listener.gd" id="1_2dg5l"]
+[ext_resource type="Texture2D" uid="uid://bjb0be7wic5sm" path="res://Art/ArrowsBasic.png" id="1_rgl2n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgl2n"]
+atlas = ExtResource("1_rgl2n")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vs4jh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgl2n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgl2n"]
+size = Vector2(32, 16)
+
+[node name="KeyListener" type="Node2D"]
+script = ExtResource("1_2dg5l")
+
+[node name="RandomTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vs4jh")
+
+[node name="TimingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TimingArea"]
+shape = SubResource("RectangleShape2D_rgl2n")
+
+[connection signal="timeout" from="RandomTimer" to="." method="_on_random_timer_timeout"]
+[connection signal="area_entered" from="TimingArea" to="." method="_on_timing_area_area_entered"]
+[connection signal="area_exited" from="TimingArea" to="." method="_on_timing_area_area_exited"]
