@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cr1kvc7jbnlg6"]
+[gd_scene load_steps=5 format=3 uid="uid://cr1kvc7jbnlg6"]
 
 [ext_resource type="Texture2D" uid="uid://8s6x817mpuq4" path="res://images/icon.svg" id="2_dl1v4"]
+[ext_resource type="AudioStream" uid="uid://m8r063nmgaxo" path="res://Music/IT'S GOING DOWN [qQy9HlWIXWo].mp3" id="3_dl1v4"]
 [ext_resource type="PackedScene" uid="uid://d4hc345qi0gg8" path="res://Scenes/key_listener.tscn" id="8_iy555"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bnokr"]
@@ -29,19 +30,23 @@ zoom = Vector2(3, 3)
 position = Vector2(-144, 64)
 rotation = 3.1415927
 direction = "right"
+song = ExtResource("3_dl1v4")
 
 [node name="KeyListener2" parent="." instance=ExtResource("8_iy555")]
 position = Vector2(-144, 24)
 rotation = -1.573452
 direction = "down"
+song = ExtResource("3_dl1v4")
 
 [node name="KeyListener3" parent="." instance=ExtResource("8_iy555")]
 position = Vector2(-144, -56)
 direction = "left"
+song = ExtResource("3_dl1v4")
 
 [node name="KeyListener4" parent="." instance=ExtResource("8_iy555")]
 position = Vector2(-144, -16)
 rotation = 1.5707964
 direction = "up"
+song = ExtResource("3_dl1v4")
 
 [connection signal="timeout" from="RandomTimer" to="." method="_on_random_timer_timeout"]

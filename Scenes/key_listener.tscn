@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4hc345qi0gg8"]
+[gd_scene load_steps=7 format=3 uid="uid://d4hc345qi0gg8"]
 
 [ext_resource type="Script" uid="uid://drv25nsskipu0" path="res://Scripts/key_listener.gd" id="1_2dg5l"]
 [ext_resource type="Texture2D" uid="uid://bjb0be7wic5sm" path="res://Art/ArrowsBasic.png" id="1_rgl2n"]
+[ext_resource type="AudioStream" uid="uid://m8r063nmgaxo" path="res://Music/IT'S GOING DOWN [qQy9HlWIXWo].mp3" id="3_vs4jh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgl2n"]
 atlas = ExtResource("1_rgl2n")
@@ -35,6 +36,14 @@ sprite_frames = SubResource("SpriteFrames_vs4jh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TimingArea"]
 shape = SubResource("RectangleShape2D_rgl2n")
+
+[node name="SongPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vs4jh")
+bus = &"Music"
+
+[node name="SongPlayerCalc" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vs4jh")
+bus = &"Calculator"
 
 [connection signal="timeout" from="RandomTimer" to="." method="_on_random_timer_timeout"]
 [connection signal="area_entered" from="TimingArea" to="." method="_on_timing_area_area_entered"]

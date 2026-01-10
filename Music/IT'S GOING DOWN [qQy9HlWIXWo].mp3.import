@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m8r063nmgaxo"
+path="res://.godot/imported/IT'S GOING DOWN [qQy9HlWIXWo].mp3-98b39cea8c9b64bc3708b24a7f41847f.mp3str"
+
+[deps]
+
+source_file="res://Music/IT'S GOING DOWN [qQy9HlWIXWo].mp3"
+dest_files=["res://.godot/imported/IT'S GOING DOWN [qQy9HlWIXWo].mp3-98b39cea8c9b64bc3708b24a7f41847f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

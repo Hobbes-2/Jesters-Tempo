@@ -26,7 +26,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_4e6jd")
 }],
 "loop": true,
-"name": &"bottom",
+"name": &"down",
 "speed": 5.0
 }, {
 "frames": [{
@@ -50,7 +50,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_xpghu")
 }],
 "loop": true,
-"name": &"top",
+"name": &"up",
 "speed": 5.0
 }]
 
@@ -60,7 +60,7 @@ size = Vector2(24.000004, 32.000008)
 [node name="FallingKey" type="AnimatedSprite2D"]
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_hnynf")
-animation = &"bottom"
+animation = &"up"
 script = ExtResource("1_o7l7b")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -72,3 +72,5 @@ shape = SubResource("RectangleShape2D_plh85")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
+one_shot = true
+autostart = true
