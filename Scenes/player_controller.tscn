@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr1kvc7jbnlg6"]
+[gd_scene load_steps=9 format=3 uid="uid://cr1kvc7jbnlg6"]
 
 [ext_resource type="Texture2D" uid="uid://8s6x817mpuq4" path="res://images/icon.svg" id="2_dl1v4"]
 [ext_resource type="AudioStream" uid="uid://m8r063nmgaxo" path="res://Music/IT'S GOING DOWN [qQy9HlWIXWo].mp3" id="3_dl1v4"]
+[ext_resource type="AudioStream" uid="uid://kxvfsfri3ybq" path="res://Music/Seperated/Going Down/bass.mp3" id="4_53kst"]
+[ext_resource type="AudioStream" uid="uid://x61xvlgh75i" path="res://Music/Seperated/Going Down/drums.mp3" id="5_iy555"]
+[ext_resource type="AudioStream" uid="uid://cj3a75w57638b" path="res://Music/Seperated/Going Down/vocals.mp3" id="6_1cmmd"]
+[ext_resource type="AudioStream" uid="uid://ye30smqr42qv" path="res://Music/Seperated/Going Down/other.mp3" id="7_4jfj4"]
 [ext_resource type="PackedScene" uid="uid://d4hc345qi0gg8" path="res://Scenes/key_listener.tscn" id="8_iy555"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bnokr"]
@@ -31,22 +35,30 @@ position = Vector2(-144, 64)
 rotation = 3.1415927
 direction = "right"
 song = ExtResource("3_dl1v4")
+part = ExtResource("4_53kst")
+partName = "Bass"
 
 [node name="KeyListener2" parent="." instance=ExtResource("8_iy555")]
 position = Vector2(-144, 24)
 rotation = -1.573452
 direction = "down"
 song = ExtResource("3_dl1v4")
+part = ExtResource("5_iy555")
+partName = "Drums"
 
 [node name="KeyListener3" parent="." instance=ExtResource("8_iy555")]
 position = Vector2(-144, -56)
 direction = "left"
 song = ExtResource("3_dl1v4")
+part = ExtResource("6_1cmmd")
+partName = "Vocal"
 
 [node name="KeyListener4" parent="." instance=ExtResource("8_iy555")]
 position = Vector2(-144, -16)
 rotation = 1.5707964
 direction = "up"
 song = ExtResource("3_dl1v4")
+part = ExtResource("7_4jfj4")
+partName = "Other"
 
 [connection signal="timeout" from="RandomTimer" to="." method="_on_random_timer_timeout"]

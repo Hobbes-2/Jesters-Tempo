@@ -3,6 +3,8 @@ extends Node2D
 @export var direction : String = ""
 @export var song : AudioStreamMP3
 @export var debug : bool = false
+@export var part : AudioStreamMP3
+@export var partName : String = ""
 
 #@onready var score_text = preload("res://objects/score_press_text.tscn")
 @onready var falling_key = preload("res://Scenes/falling_key.tscn")
@@ -22,11 +24,23 @@ var falling_key_queue : Array = []
 var quips = ["Too early!", "Perfect!", "Nice!", "Close call!"]
 var quip
 
+var spectrum
+var pitch
+var output : Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	song_player_calc.stream = song
+	#OS.execute(
+	#"bash",
+	#["-c", "source venv/bin/activate && demucs song.mp3"],
+	#output
+#)
+
+
+	#spectrum = AudioServer.get_bus_effect_instance(1, 0)
+	song_player_calc.bus = partName
+	song_player_calc.stream = part
 	song_player_calc.playing = true
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Calculator"), true)
+	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Calculator"), true)
 	await get_tree().create_timer(1.92).timeout
 	song_player.stream = song
 	song_player.playing = true
@@ -45,9 +59,24 @@ func _physics_process(delta: float) -> void:
 			print("Timing is " , timeStop, ". ", quip)
 		current_note.queue_free()
 
-	if AudioServer.get_bus_peak_volume_right_db(1, 0) > -75.0:
+
+#Put a if statement in here to check if the part is and adjust the -80 accordingly
+	if AudioServer.get_bus_peak_volume_left_db(AudioServer.get_bus_index(partName), 0) < -80:
 		CreateFallingKey()
-		print(AudioServer.get_bus_peak_volume_right_db(1, 0))
+	print(AudioServer.get_bus_peak_volume_left_db(AudioServer.get_bus_index(partName), 0))
+
+##With overall sound
+	#if AudioServer.get_bus_peak_volume_right_db(1, 0) > -75.0:
+		#CreateFallingKey()
+		#print(AudioServer.get_bus_peak_volume_right_db(1, 0))
+
+##This is with pitch
+	#var magnitude = spectrum.get_magnitude_for_frequency_range(20, 20000)
+	#pitch = magnitude.length()
+	#print("Pitch is: ", pitch)
+	#if pitch >= 0.4:
+		#CreateFallingKey()
+
 
 	if Input.is_action_just_pressed(direction.capitalize()):
 		if entered == true:

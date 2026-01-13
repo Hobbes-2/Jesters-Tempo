@@ -1,5 +1,7 @@
 extends AnimatedSprite2D
 
+@export var debug : bool = false
+
 var fall_speed = 3
 #Starting x pos
 var init_x_pos: float = 200
@@ -13,7 +15,8 @@ func _physics_process(delta: float) -> void:
 	position -= Vector2(fall_speed, 0)
 	# Find out how long it takes for arrow to reach critical spot
 	if global_position.x < pass_threshold and not $Timer.is_stopped():
-		print("Time is:", $Timer.wait_time - $Timer.time_left)
+		if debug:
+			print("Time is:", $Timer.wait_time - $Timer.time_left)
 		$Timer.stop()
 		has_passed = true
 

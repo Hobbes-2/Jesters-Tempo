@@ -18,6 +18,7 @@ config/icon="res://images/icon.svg"
 [autoload]
 
 Signals="*res://Scripts/signals.gd"
+DemucsSetup="*res://Scripts/DemucsSetup.gd"
 
 [editor_plugins]
 

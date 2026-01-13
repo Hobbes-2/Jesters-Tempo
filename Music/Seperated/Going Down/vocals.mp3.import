@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cj3a75w57638b"
+path="res://.godot/imported/vocals.mp3-a69895718df343b25cecf8907689c5be.mp3str"
+
+[deps]
+
+source_file="res://Music/Seperated/Going Down/vocals.mp3"
+dest_files=["res://.godot/imported/vocals.mp3-a69895718df343b25cecf8907689c5be.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
