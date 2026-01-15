@@ -74,3 +74,5 @@ shape = SubResource("RectangleShape2D_plh85")
 wait_time = 10.0
 one_shot = true
 autostart = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -44,6 +44,7 @@ bus = &"Music"
 [node name="SongPlayerCalc" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vs4jh")
 autoplay = true
+bus = &"Calculator"
 
 [connection signal="timeout" from="RandomTimer" to="." method="_on_random_timer_timeout"]
 [connection signal="area_entered" from="TimingArea" to="." method="_on_timing_area_area_entered"]

@@ -5,6 +5,8 @@ extends Node2D
 @export var debug : bool = false
 @export var part : AudioStreamMP3
 @export var partName : String = ""
+@export var BPM : int = 120
+
 
 #@onready var score_text = preload("res://objects/score_press_text.tscn")
 @onready var falling_key = preload("res://Scenes/falling_key.tscn")
@@ -27,6 +29,10 @@ var quip
 var spectrum
 var pitch
 var output : Array = []
+
+var timeSignature : float = 60 / BPM
+var next_beat_time := 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#OS.execute(
@@ -36,11 +42,9 @@ func _ready() -> void:
 #)
 
 
-	#spectrum = AudioServer.get_bus_effect_instance(1, 0)
 	song_player_calc.bus = partName
 	song_player_calc.stream = part
 	song_player_calc.playing = true
-	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Calculator"), true)
 	await get_tree().create_timer(1.92).timeout
 	song_player.stream = song
 	song_player.playing = true
@@ -60,10 +64,12 @@ func _physics_process(delta: float) -> void:
 		current_note.queue_free()
 
 
-#Put a if statement in here to check if the part is and adjust the -80 accordingly
-	if AudioServer.get_bus_peak_volume_left_db(AudioServer.get_bus_index(partName), 0) < -80:
-		CreateFallingKey()
-	print(AudioServer.get_bus_peak_volume_left_db(AudioServer.get_bus_index(partName), 0))
+##Put a if statement in here to check if the part is and adjust the -80 accordingly
+	#if AudioServer.get_bus_peak_volume_left_db(AudioServer.get_bus_index(partName), 0) < -80:
+		#CreateFallingKey()
+		#await get_tree().create_timer(0.5).timeout
+#
+	#print(AudioServer.get_bus_peak_volume_left_db(AudioServer.get_bus_index(partName), 0))
 
 ##With overall sound
 	#if AudioServer.get_bus_peak_volume_right_db(1, 0) > -75.0:
@@ -92,6 +98,18 @@ func _physics_process(delta: float) -> void:
 			if debug:
 				print(falling_key_queue)
 
+#
+	#if !song_player_calc.playing:
+		#return
+#
+	#var song_time := song_player_calc.get_playback_position()
+#
+	#if song_time >= next_beat_time:
+		#CreateFallingKey()
+		#next_beat_time += timeSignature
+
+
+
 func _on_timing_area_area_entered(area: Area2D) -> void:
 	entered = true
 	current_note = area.get_parent()
@@ -104,7 +122,6 @@ func _on_timing_area_area_exited(area: Area2D) -> void:
 		if debug:
 			print("Missed a note!")
 	hit = false
-
 
 func hitInTime():
 	hit = true
@@ -122,6 +139,20 @@ func CreateFallingKey():
 
 
 func _on_random_timer_timeout():
-	#CreateFallingKey()
+	CreateFallingKey()
 	$RandomTimer.wait_time = randf_range(0.4, 3)
 	$RandomTimer.start()
+
+#var last_energy := 0.0
+#const ONSET_THRESHOLD := 0.12
+#
+#func detect_onset(current_energy):
+	#var delta = current_energy - last_energy
+	#last_energy = current_energy
+	#return delta > ONSET_THRESHOLD
+#
+#const MIN_INTERVAL := 0.18 # ~1/8 note at 120 BPM
+#var last_spawn_time := -999.0
+#
+#func can_spawn(song_time):
+	#return song_time - last_spawn_time > MIN_INTERVAL
