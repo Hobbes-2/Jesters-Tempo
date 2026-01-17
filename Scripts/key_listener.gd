@@ -102,11 +102,11 @@ func _physics_process(delta: float) -> void:
 	#if !song_player_calc.playing:
 		#return
 #
-	#var song_time := song_player_calc.get_playback_position()
-#
-	#if song_time >= next_beat_time:
-		#CreateFallingKey()
-		#next_beat_time += timeSignature
+	var song_time = song_player_calc.get_playback_position()
+	print(song_time)
+	if roundf(song_time) >= next_beat_time:
+		CreateFallingKey()
+		next_beat_time += timeSignature
 
 
 
@@ -139,7 +139,7 @@ func CreateFallingKey():
 
 
 func _on_random_timer_timeout():
-	CreateFallingKey()
+	#CreateFallingKey()
 	$RandomTimer.wait_time = randf_range(0.4, 3)
 	$RandomTimer.start()
 
