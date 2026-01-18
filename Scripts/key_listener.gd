@@ -51,6 +51,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if GlobalVars.game_paused == true:
+		song_player_calc.stream_paused = true
+		song_player.stream_paused = true
+	else:
+		song_player_calc.stream_paused = false
+		song_player.stream_paused = false
+
 	if hit == true:
 		timeStop = 10.0 - timer.time_left
 		if timeStop <= 0.1:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cr1kvc7jbnlg6"]
+[gd_scene load_steps=10 format=3 uid="uid://cr1kvc7jbnlg6"]
 
 [ext_resource type="Texture2D" uid="uid://8s6x817mpuq4" path="res://images/icon.svg" id="2_dl1v4"]
 [ext_resource type="AudioStream" uid="uid://m8r063nmgaxo" path="res://Music/IT'S GOING DOWN [qQy9HlWIXWo].mp3" id="3_dl1v4"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://x61xvlgh75i" path="res://Music/Seperated/Going Down/drums.mp3" id="5_iy555"]
 [ext_resource type="AudioStream" uid="uid://cj3a75w57638b" path="res://Music/Seperated/Going Down/vocals.mp3" id="6_1cmmd"]
 [ext_resource type="AudioStream" uid="uid://ye30smqr42qv" path="res://Music/Seperated/Going Down/other.mp3" id="7_4jfj4"]
+[ext_resource type="PackedScene" uid="uid://cu5g0qh8b5wko" path="res://Scenes/pause_menu.tscn" id="8_1cmmd"]
 [ext_resource type="PackedScene" uid="uid://d4hc345qi0gg8" path="res://Scenes/key_listener.tscn" id="8_iy555"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bnokr"]
@@ -21,12 +22,15 @@ animations = [{
 
 [node name="PlayerController" type="Node2D"]
 
+[node name="PauseMenu" parent="." instance=ExtResource("8_1cmmd")]
+position = Vector2(-184, -120)
+scale = Vector2(0.3, 0.3)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_bnokr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
 
 [node name="RandomTimer" type="Timer" parent="."]
 

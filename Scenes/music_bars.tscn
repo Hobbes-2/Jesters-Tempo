@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmylm8dmk7nve"]
+
+[ext_resource type="Script" uid="uid://rfxmly8oeq2u" path="res://Scripts/music_bars.gd" id="1_mwypp"]
+
+[node name="MusicBars" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+script = ExtResource("1_mwypp")
