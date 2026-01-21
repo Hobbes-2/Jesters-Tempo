@@ -5,7 +5,7 @@ extends Node2D
 @export var debug : bool = false
 @export var part : AudioStreamMP3
 @export var partName : String = ""
-@export var BPM : int = 120
+@export var BPM : float = 145.0
 
 
 #@onready var score_text = preload("res://objects/score_press_text.tscn")
@@ -33,6 +33,8 @@ var output : Array = []
 var timeSignature : float = 60 / BPM
 var next_beat_time := 0.0
 
+var currentBeat = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#OS.execute(
@@ -40,8 +42,6 @@ func _ready() -> void:
 	#["-c", "source venv/bin/activate && demucs song.mp3"],
 	#output
 #)
-
-
 	song_player_calc.bus = partName
 	song_player_calc.stream = part
 	song_player_calc.playing = true
@@ -51,6 +51,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+
+	print(currentBeat)
+
 	if GlobalVars.game_paused == true:
 		song_player_calc.stream_paused = true
 		song_player.stream_paused = true
@@ -105,17 +108,29 @@ func _physics_process(delta: float) -> void:
 			if debug:
 				print(falling_key_queue)
 
-#
+
 	#if !song_player_calc.playing:
 		#return
-#
+
 	var song_time = song_player_calc.get_playback_position()
 	print(song_time)
+	#if roundf(song_time) >= next_beat_time:
+		#CreateFallingKey()
+		#next_beat_time += timeSignature
+##Another way
+
+	#if $TempTimer.time_left <= 0.0:
+		#if AudioServer.get_bus_peak_volume_right_db(AudioServer.get_bus_index(partName), 0) > -15.0:
+			#CreateFallingKey()
+			#print(AudioServer.get_bus_peak_volume_right_db(AudioServer.get_bus_index(partName), 0))
+		#$TempTimer.start()
+
 	if roundf(song_time) >= next_beat_time:
-		CreateFallingKey()
 		next_beat_time += timeSignature
-
-
+		if AudioServer.get_bus_peak_volume_right_db(AudioServer.get_bus_index(partName), 0) > -15.0:
+			CreateFallingKey()
+			print(AudioServer.get_bus_peak_volume_right_db(AudioServer.get_bus_index(partName), 0))
+		$TempTimer.start()
 
 func _on_timing_area_area_entered(area: Area2D) -> void:
 	entered = true

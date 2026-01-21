@@ -52,6 +52,10 @@ offset_right = 0.0
 offset_bottom = 0.0
 audio_player = NodePath("../SongPlayerCalc")
 
+[node name="TempTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="timeout" from="RandomTimer" to="." method="_on_random_timer_timeout"]
 [connection signal="area_entered" from="TimingArea" to="." method="_on_timing_area_area_entered"]
 [connection signal="area_exited" from="TimingArea" to="." method="_on_timing_area_area_exited"]
