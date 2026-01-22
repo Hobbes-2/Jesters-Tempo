@@ -49,6 +49,8 @@ func _ready() -> void:
 	song_player.stream = song
 	song_player.playing = true
 
+	print(part.get_data())
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 
