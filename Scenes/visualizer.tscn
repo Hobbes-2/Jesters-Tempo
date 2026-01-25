@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cslmywd5bp6p"]
+
+[ext_resource type="Script" uid="uid://bnyfhivk3thto" path="res://Scripts/visualizer.gd" id="1_ve748"]
+[ext_resource type="Shader" uid="uid://b033ajns7a1ts" path="res://Shaders/visualizer.gdshader" id="2_nq7id"]
+[ext_resource type="AudioStream" uid="uid://ye30smqr42qv" path="res://Music/Seperated/Going Down/other.mp3" id="3_77t23"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77t23"]
+shader = ExtResource("2_nq7id")
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="Visualizer" type="Node2D"]
+script = ExtResource("1_ve748")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_77t23")
+offset_right = 448.0
+offset_bottom = 384.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_77t23")
+autoplay = true
